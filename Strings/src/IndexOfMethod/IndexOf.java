@@ -19,21 +19,19 @@ public class IndexOf {
         if (!indiaCode.isEmpty() && !operatorCode.isEmpty() && !subscriberCode.isEmpty()) {
             System.out.println("your india code -->" + indiaCode);
             System.out.println("your operator code -->" + operatorCode);
+            System.out.println("your subscriber code -->" + subscriberCode);
         }else {
-            System.out.println("you entered wrong phone number");
+            System.out.println("You entered wrong phone number that contains no spaces and wrong character !!");
         }
     }
 
     private static String parseIndiaCode(String userInput) {
         String indiaCode = "";
 
-
-        if (userInput.contains("+91")) {
+        if (userInput.matches("[[+]91]{3}[\\s]?\\d{4}[-\\s]?\\d{6}") && userInput.contains(" ")) {
             int plusSignIndex = userInput.indexOf("+");
             int spaceIndex = userInput.indexOf(" ");
             indiaCode = userInput.substring(plusSignIndex,spaceIndex);
-        }else {
-            System.out.println("Wrong code");
         }
 
         return indiaCode;
@@ -45,33 +43,31 @@ public class IndexOf {
         String operatorCode = "";
 
 
-        if (userInput.matches("([\s]*\\d{3}[\s][-])")) {
+        if (userInput.matches("[[+]91]{3}[\\s]?\\d{4}[-\\s]?\\d{6}") && userInput.contains(" ")) {
             int spaceIndex = userInput.indexOf(" ");
             int hypenIndex = userInput.indexOf("-");
-            operatorCode = userInput.substring(spaceIndex,hypenIndex);
-        }else {
-            System.out.println("Wrong operator code");
+            operatorCode = userInput.substring(spaceIndex + 1,hypenIndex);
         }
-
         return operatorCode;
     }
 
 
 
     private static String parseSubscriberCode(String userInput) {
-//        String indiaCode = "";
-//
-//
-//        if (userInput.contains("+91")) {
-//            int plusSignIndex = userInput.indexOf("+");
-//            int spaceIndex = userInput.indexOf(" ");
-//            indiaCode = userInput.substring(plusSignIndex,spaceIndex);
-//        }else {
-//            System.out.println("Wrong code");
-//        }
+        String subscriberCode = "";
 
-        return null;
+
+        if (userInput.matches("[[+]91]{3}[\\s]?\\d{4}[-\\s]?\\d{6}") && userInput.contains(" ")) {
+            int hypenIndex = userInput.indexOf("-");
+            subscriberCode = userInput.substring(hypenIndex  + 1);
+        }
+
+        return subscriberCode;
     }
+
+
+
+
 
 
 }
