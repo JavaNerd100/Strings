@@ -1,2 +1,2 @@
 # Strings
-Basic of Java String class
+Here you will get to know about the String class and its methods.
